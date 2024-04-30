@@ -96,7 +96,7 @@ def upload_csv(request):
                         final_json.append(new_row)
 
         # print the final json
-        print("final_json: ", final_json)
+        # print("final_json: ", final_json)
         # Return a response object that indicates the success of the file upload.
         return JsonResponse(
             {"message": "File uploaded successfully", "json_data": final_json},
