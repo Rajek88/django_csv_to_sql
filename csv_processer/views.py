@@ -7,6 +7,9 @@ import pandas as pd
 import os
 import json
 
+# import self created python package
+from list_of_us_universities_with_state_code.main import get_state_code_of_university
+
 from backend import settings
 
 # Create your views here.
@@ -87,7 +90,7 @@ def upload_csv(request):
                         new_row = {}
                         new_row["Class"] = c
                         new_row["School"] = s
-                        new_row["State"] = st
+                        new_row["State"] = get_state_code_of_university(s)[s]
                         new_row["Name"] = " ".join(full_name)
                         # append this to final json
                         final_json.append(new_row)
