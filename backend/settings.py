@@ -35,6 +35,8 @@ ALLOWED_HOSTS = [
     "localhost:5173",
     "127.0.0.1",
     "3.6.115.110",
+    "http://3.6.115.110:8000",
+    "http://3.6.115.110",
     "https://rajek88.github.io/csv_to_db_fe",
 ]
 
