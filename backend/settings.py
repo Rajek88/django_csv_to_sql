@@ -41,6 +41,9 @@ ALLOWED_HOSTS = [
     "http://ec2-3-6-115-110.ap-south-1.compute.amazonaws.com",
     "https://ec2-3-6-115-110.ap-south-1.compute.amazonaws.com",
     "ec2-3-6-115-110.ap-south-1.compute.amazonaws.com",
+    "http://tempcsv.zenifi.in",
+    "https://tempcsv.zenifi.in",
+    "tempcsv.zenifi.in",
 ]
 
 CORS_ORIGIN_WHITELIST = [
