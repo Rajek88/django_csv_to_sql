@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 import pandas as pd
 import os
 import json
+from csv_processer.models import UploadedCSV
 
 # import self created python package
 from list_of_us_universities_with_state_code.main import get_state_code_of_university
@@ -53,7 +54,6 @@ def upload_csv(request):
         # we are here, means we have the file saved in media folder
         # Convert CSV files to JSON
         json_data = csv_to_json(path)
-        print("json_data: ", json_data)
 
         # final json
         final_json = []
@@ -65,11 +65,10 @@ def upload_csv(request):
             # name must be concatinated, as the name suggests the same human entity
             full_name = []
             for key in row:
-                print("key: ", key)
                 # now map the keys and find repeatation in similarity
                 if "class" in key.lower():
                     key_count["class"].append(row.get(key))
-                if "school" in key.lower():
+                if "school" in key.lower() or "university" in key.lower():
                     key_count["school"].append(row.get(key))
                 if (
                     "state" in key.lower()
@@ -82,11 +81,8 @@ def upload_csv(request):
 
             # now we have all the possible entries, now create combinations
             for c in key_count["class"]:
-                print("c: ", c)
                 for s in key_count["school"]:
-                    print("s: ", s)
                     for st in key_count["state"]:
-                        print("st: ", st)
                         new_row = {}
                         new_row["Class"] = c
                         new_row["School"] = s
@@ -96,7 +92,27 @@ def upload_csv(request):
                         final_json.append(new_row)
 
         # print the final json
-        # print("final_json: ", final_json)
+        # now store the final json to DB
+        for ob in final_json:
+            try:
+                # Create an instance of MyModel
+                db = UploadedCSV(
+                    Name=ob["Name"],
+                    Class=ob["Class"],
+                    School=ob["School"],
+                    State=ob["State"],
+                )
+                # Save the instance to the database
+                db.save()
+            except Exception as e:
+                print(f"Error: {e}")
+
+        # now finally remove the file
+        if os.path.exists(path):
+            print("Deleting the file")
+            os.remove(path)
+        else:
+            print("The file does not exist")
         # Return a response object that indicates the success of the file upload.
         return JsonResponse(
             {"message": "File uploaded successfully", "json_data": final_json},
