@@ -38,6 +38,8 @@ ALLOWED_HOSTS = [
     "http://3.6.115.110:8000",
     "http://3.6.115.110",
     "https://rajek88.github.io/csv_to_db_fe",
+    "http://ec2-3-6-115-110.ap-south-1.compute.amazonaws.com",
+    "https://ec2-3-6-115-110.ap-south-1.compute.amazonaws.com",
 ]
 
 CORS_ORIGIN_WHITELIST = [
