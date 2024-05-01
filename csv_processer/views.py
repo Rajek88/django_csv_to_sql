@@ -127,7 +127,7 @@ def upload_csv(request):
 def get_csv_data(request):
     try:
         # Retrieve all rows from UploadedCSV
-        csv_data = UploadedCSV.objects.all()
+        csv_data = UploadedCSV.objects.all().order_by("-id")
         csv_data = list(csv_data.values())
         # Return a response object that indicates the success of the file upload.
         return JsonResponse(
