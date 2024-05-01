@@ -77,7 +77,7 @@ def upload_csv(request):
                 ):
                     key_count["state"].append(row.get(key))
                 if "name" in key.lower():
-                    full_name.append(row.get(key))
+                    full_name.append(row.get(key) or "")
 
             # now we have all the possible entries, now create combinations
             for c in key_count["class"]:
@@ -86,7 +86,7 @@ def upload_csv(request):
                         new_row = {}
                         new_row["Class"] = c
                         new_row["School"] = s
-                        new_row["State"] = get_state_code_of_university(s)[s]
+                        new_row["State"] = get_state_code_of_university(s)["state_code"]
                         new_row["Name"] = " ".join(full_name)
                         # append this to final json
                         final_json.append(new_row)
