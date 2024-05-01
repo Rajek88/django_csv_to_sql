@@ -34,7 +34,7 @@ CSRF_TRUSTED_ORIGINS = (
 ALLOWED_HOSTS = [
     "localhost:5173",
     "127.0.0.1",
-    "https://rajek88.github.io/csv_to_db_fe",
+    "3.6.115.110" "https://rajek88.github.io/csv_to_db_fe",
 ]
 
 CORS_ORIGIN_WHITELIST = [
