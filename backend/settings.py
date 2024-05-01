@@ -27,11 +27,19 @@ SECRET_KEY = "django-insecure-1ma)1z4aivz59f8vzlu0_w4bwm8rpez0q7(=il0mq#@lg1jut4
 DEBUG = True
 
 CORS_ORIGIN_ALLOW_ALL = True
-CSRF_TRUSTED_ORIGINS = ("http://localhost:5173",)
-ALLOWED_HOSTS = ["localhost:5173", "127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = (
+    "http://localhost:5173",
+    "https://rajek88.github.io/csv_to_db_fe",
+)
+ALLOWED_HOSTS = [
+    "localhost:5173",
+    "127.0.0.1",
+    "https://rajek88.github.io/csv_to_db_fe",
+]
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:5173",
+    "https://rajek88.github.io/csv_to_db_fe",
 ]
 
 # Application definition
