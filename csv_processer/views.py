@@ -122,3 +122,20 @@ def upload_csv(request):
         return JsonResponse(
             {"message": "Please upload a file via post request"}, status=400
         )
+
+
+def get_csv_data(request):
+    try:
+        # Retrieve all rows from UploadedCSV
+        csv_data = UploadedCSV.objects.all()
+        csv_data = list(csv_data.values())
+        # Return a response object that indicates the success of the file upload.
+        return JsonResponse(
+            {"message": "Data fetched successfully", "json_data": csv_data},
+            status=200,
+        )
+    except Exception as e:
+        return JsonResponse(
+            {"message": "Oops! Something went wrong", "e": str(e)},
+            status=500,
+        )
