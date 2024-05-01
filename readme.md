@@ -1,6 +1,7 @@
 # First create a virtual environment (Windows)
 
 ```bash
+python -m venv .venv
 source .venv/Scripts/activate
 ```
 
