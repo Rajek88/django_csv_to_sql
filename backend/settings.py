@@ -39,7 +39,7 @@ ALLOWED_HOSTS = [
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:5173",
-    "https://rajek88.github.io/csv_to_db_fe",
+    "https://rajek88.github.io",
 ]
 
 # Application definition
